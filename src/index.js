@@ -6,6 +6,7 @@ const express = require('express');
 class Server {
 
     constructor() {
+
         //Crear aplicacion express
         this.app = express();
         //Configurar/almacenar puerto por el que se ejcutara el servidor
@@ -17,12 +18,22 @@ class Server {
         let router = express.Router();
         router.get('/', (req, res) => {
             console.log("Get");
-            res.status(200).send();
+            // res.status(200).send();
+            res.status(200).json({ "mensaje": "Conexión exitosa" });
         });
 
+        //Añadir ruta a express
+        this.app.use(router);
+
+        //Poner a la escucha el servidor
+        this.app.listen(this.app.get('PORT'), () => {
+            console.log("Servidor corriendo por el puerto => ", this.app.get('PORT'));
+        });
 
 
     }
 
 
 }
+
+new Server();
