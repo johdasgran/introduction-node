@@ -19,7 +19,7 @@ class Server {
         router.get('/', (req, res) => {
             console.log("Get");
             // res.status(200).send();
-            res.status(200).json({ "mensaje": "Conexión exitosa" });
+            res.status(200).json({ "mensaje": "Conexión exitosa <3" });
         });
 
         //Añadir ruta a express
