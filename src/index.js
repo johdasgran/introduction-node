@@ -3,6 +3,7 @@ const express = require('express');
 
 //importar morgan
 const morgan = require('morgan');
+const IndexRouter = require('./routers/indexRouter');
 
 // Clase que representa la configuracion del servidor
 
@@ -26,16 +27,11 @@ class Server {
         //Utilizar morgan
         this.app.use(morgan());
 
-        //Crear ruta
-        let router = express.Router();
-        router.get('/', (req, res) => {
-            console.log("Get");
-            // res.status(200).send();
-            res.status(200).json({ "mensaje": "Conexión exitosa <3" });
-        });
+        //Crear rutas
+        let indexR = new IndexRouter();
 
         //Añadir ruta a express
-        this.app.use(router);
+        this.app.use(indexR.router);
 
         //Poner a la escucha el servidor
         this.app.listen(this.app.get('PORT'), () => {
