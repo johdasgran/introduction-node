@@ -1,6 +1,9 @@
 //importar express
 const express = require('express');
 
+//importar morgan
+const morgan = require('morgan');
+
 // Clase que representa la configuracion del servidor
 
 class Server {
@@ -9,10 +12,19 @@ class Server {
 
         //Crear aplicacion express
         this.app = express();
+        this.config();
+
+    }
+
+
+
+    config() {
         //Configurar/almacenar puerto por el que se ejcutara el servidor
         this.app.set('PORT', process.env.PORT || 3000);
         //Procesar los datos de las particiones en formato json
         this.app.use(express.json());
+        //Utilizar morgan
+        this.app.use(morgan());
 
         //Crear ruta
         let router = express.Router();
@@ -29,9 +41,9 @@ class Server {
         this.app.listen(this.app.get('PORT'), () => {
             console.log("Servidor corriendo por el puerto => ", this.app.get('PORT'));
         });
-
-
     }
+
+
 
 
 }
