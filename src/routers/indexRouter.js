@@ -1,6 +1,5 @@
 const express = require('express');
 
-
 class IndexRouter {
 
     constructor() {
@@ -18,13 +17,11 @@ class IndexRouter {
         });
 
 
-        this.router.get('/:usuario', (req, res) => {
-            let usuario = req.params.usuario;
-            console.log("Usuario-> ", usuario);
-            res.status(200).json({ "mensaje": "Usuario recibido" });
-        });
-
-
+        // this.router.get('/:usuario', (req, res) => {
+        //     let usuario = req.params.usuario;
+        //     console.log("Usuario-> ", usuario);
+        //     res.status(200).json({ "mensaje": "Usuario recibido" });
+        // });
 
 
 

@@ -4,6 +4,7 @@ const express = require('express');
 //importar morgan
 const morgan = require('morgan');
 const IndexRouter = require('./routers/indexRouter');
+const UsuarioRouter = require('./routers/usuarioRouter');
 
 // Clase que representa la configuracion del servidor
 
@@ -28,8 +29,13 @@ class Server {
         //combined, short, tiny, dev, formato a usar para mostrar en la terminal la actualización
         this.app.use(morgan('tiny'));
 
-        //Crear rutas
+        //------Crear rutas----------------
         let indexR = new IndexRouter();
+
+
+        let userR = new UsuarioRouter();
+        this.app.use(userR.router);
+
 
         //Añadir ruta a express
         this.app.use(indexR.router);
