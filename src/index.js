@@ -25,7 +25,8 @@ class Server {
         //Procesar los datos de las particiones en formato json
         this.app.use(express.json());
         //Utilizar morgan
-        this.app.use(morgan());
+        //combined, short, tiny, dev, formato a usar para mostrar en la terminal la actualización
+        this.app.use(morgan('tiny'));
 
         //Crear rutas
         let indexR = new IndexRouter();

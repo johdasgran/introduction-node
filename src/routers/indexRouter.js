@@ -16,6 +16,20 @@ class IndexRouter {
             // res.status(200).send();
             res.status(200).json({ "mensaje": "Conexión exitosa <3" });
         });
+
+
+        this.router.get('/:usuario', (req, res) => {
+            let usuario = req.params.usuario;
+            console.log("Usuario-> ", usuario);
+            res.status(200).send();
+        });
+
+
+
+
+
+
+
     }
 
 
