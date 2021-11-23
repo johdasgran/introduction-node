@@ -1,6 +1,7 @@
 //desestructurar en javascript
 //const express = require('express');
 
+const e = require('express');
 const { Router } = require('express');
 
 const usuarios = [
@@ -32,6 +33,7 @@ class UsuarioRouter {
         this.router.get('/usuarios/:id', this.obtenerUsuario);
         this.router.post('/usuarios', this.registrarUsuario);
         this.router.put('/usuarios', this.actualizarUsuario);
+        this.router.delete('/usuarios', this.borrarUsuario);
 
     }
 
@@ -51,11 +53,15 @@ class UsuarioRouter {
         // let objUser = req.body;
         // console.log(objUser);
 
-        usuarios.push({ id: usuarios.length + 1, nombre: nombre, apellido: apellido });
-        console.table(usuarios);
+        // usuarios.push({ id: usuarios.length + 1, nombre: nombre, apellido: apellido });
+        // console.table(usuarios);
 
         // let objUser = req.body;
         // console.log(objUser.paciente);
+
+        let temp = usuarios.map(user => user.id);
+        let id = Math.max(...temp) + 1;
+        usuarios.push({ id, nombre, apellido });
 
         res.status(201).send();
     }
@@ -73,10 +79,20 @@ class UsuarioRouter {
         res.status(200).send();
     }
 
+    borrarUsuario(req, res) {
+        let { id } = req.body;
+        let index = usuarios.map((e) => e.id).indexOf(id);
+        usuarios.splice(index, 1);
 
 
+
+        res.status(200).send();
+    }
 
 }
+
+
+
 
 
 module.exports = UsuarioRouter;
