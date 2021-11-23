@@ -30,16 +30,42 @@ class UsuarioRouter {
         // });
 
         this.router.get('/usuarios/:id', this.obtenerUsuario);
+        this.router.post('/usuarios', this.registrarUsuario);
+        this.router.put('/usuarios', this.actualizarUsuario);
 
     }
 
     //"#" para volver privado los metodos
+
+
     obtenerUsuario(req, res) {
         // console.log(req);
         let id = parseInt(req.params.id);
         let objUsu = usuarios.filter(usuario => (usuario.id === id));
         res.status(200).json(objUsu);
     }
+
+    registrarUsuario(req, res) {
+        let { nombre, apellido } = req.body;
+        console.table({ nombre, apellido });
+        // let objUser = req.body;
+        // console.log(objUser);
+
+        usuarios.push({ id: usuarios.length + 1, nombre: nombre, apellido: apellido });
+        console.table(usuarios);
+
+        // let objUser = req.body;
+        // console.log(objUser.paciente);
+
+        res.status(201).send();
+    }
+
+    actualizarUsuario(req, res) {
+
+    }
+
+
+
 
 }
 
