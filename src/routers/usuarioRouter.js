@@ -61,7 +61,16 @@ class UsuarioRouter {
     }
 
     actualizarUsuario(req, res) {
+        let { id, nombre, apellido } = req.body;
 
+        usuarios.map(objUsuario => {
+            if (objUsuario.id == id) {
+                objUsuario.nombre = nombre;
+                objUsuario.apellido = apellido;
+            }
+        });
+
+        res.status(200).send();
     }
 
 
