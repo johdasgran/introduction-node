@@ -7,26 +7,31 @@ const usuarios = [
 
 class UsuarioController {
 
+    obtenerTodosLosUsuarios(req, res) {
+        res.status(200).json(usuarios);
+
+    }
+
     obtenerUsuario(req, res) {
         // console.log(req);
+        //Filtra por id
         let id = parseInt(req.params.id);
         let objUsu = usuarios.filter(usuario => (usuario.id === id));
         res.status(200).json(objUsu);
     }
 
     registrarUsuario(req, res) {
+        //Captura los datos del cuerpo de la petición
         let { nombre, apellido } = req.body;
         console.table({ nombre, apellido });
         // let objUser = req.body;
         // console.log(objUser);
-
-        // usuarios.push({ id: usuarios.length + 1, nombre: nombre, apellido: apellido });
-        // console.table(usuarios);
-
         // let objUser = req.body;
         // console.log(objUser.paciente);
 
+        //Retorna un arreglo con los ids
         let temp = usuarios.map(user => user.id);
+        // ...arreglo -> spread operator (desempaqueta los elementos de un arreglo)
         let id = Math.max(...temp) + 1;
         usuarios.push({ id, nombre, apellido });
 

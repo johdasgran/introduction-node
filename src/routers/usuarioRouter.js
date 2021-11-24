@@ -18,10 +18,12 @@ class UsuarioRouter {
     config() {
 
         const objUsuarioC = new UsuarioController();
+        //CREACION DE RUTAS
+        this.router.get('/usuarios', objUsuarioC.obtenerTodosLosUsuarios);
 
-        this.router.get('/usuarios', (req, res) => {
-            res.status(200).json(usuarios);
-        });
+        // this.router.get('/usuarios', (req, res) => {
+        //     res.status(200).json(usuarios);
+        // });
 
         //Siempre dejar endpoint de primero para que no se confunda con 
         //la conexion con parametros.
