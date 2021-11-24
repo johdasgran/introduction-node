@@ -52,7 +52,7 @@ class UsuarioController {
     }
 
     borrarUsuario(req, res) {
-        let { id } = req.body;
+        let { id } = parseInt(req.body);
         let index = usuarios.map((e) => e.id).indexOf(id);
         usuarios.splice(index, 1);
         res.status(200).send();
